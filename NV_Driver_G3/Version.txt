@@ -1,0 +1,131 @@
+Date；		2016-12-20
+Author:		Chiyuan.Ma
+Note:
+	本文件用于进行对程序的版本修改进行记录
+
+******************************************************************
+Date:		2017-03-03
+Project:	Driver
+Platform:	Hi3518E
+Author：	Chiyuan.Ma
+Version:	V: 01.13
+Modify:
+	Checkout from branch develop.
+	1. 针对G06设备PIR误触发问题，修改PIR触发的滤波机制
+	2. 添加根据PIR触发的时间，判断排除干扰触发，触发时间可以修改
+	3. 修复PIR无触发的正常状态为高电平，触发后为低电平
+
+Note:
+	老产品Bug修复，PIR新滤波机制添加。
+
+******************************************************************
+Date:		2017-02-21
+Project:	Driver
+Platform:	Hi3518E
+Author：	Chiyuan.Ma
+Version:	V: 01.12
+Modify:
+	Checkout from branch develop.
+	1. 整理驱动代码的格式，不修改代码功能
+	2. 将代码文件编码格式转换成UTF-8
+	3. 使用indent整理代码格式
+	4. 使用Astyle整理代码格式
+	5. 添加type_astyle.sh脚本，在以后开发时方便进行代码格式整理。
+
+Note:
+	该版本只是在程序代码格式上进行修改，并未修改代码功能。
+
+******************************************************************
+Date:		2017-02-20
+Project:	Driver
+Platform:	Hi3518EV200
+Author：	Chiyuan.Ma
+Version:	V: 01.11
+Modify:
+	Checkout from develop.
+	1. 增加支持Hi3518EV200平台设备
+	2. 增加支持H04设备驱动，从G26设备修改
+	3. H04设备驱动支持模块：
+		LDR、红外灯、IRC、WiFi按键、Visitor按键、状态灯、
+		AudioPlug、PIR、DoorBell、DoorLock、FM1288
+	4. 修改Pro/中3518E_G16.c文件为3518EV200G16.c，修改3518E_G26.c文件
+		为3518EV200_G26.c，并修改这两个文件中的函数及变量名为
+		3518EV200以作区分。
+	5. 将G16、G26设备配置文件中的FM1288配置参数统一在CTA/HWAEC.c文件中
+		以宏定义平台类型作区分，以减少编译文件的大小，如果有个别
+		设备的参数不一样，可以在其设备配置文件中单独修改。
+
+Note:
+	新产品驱动开发，增加支持Hi3518EV200平台驱动，增加H04设备支持驱动
+
+******************************************************************
+Date:		2017-02-10
+Project:	Driver
+Platform:	Hi3518EV200
+Author：	Chiyuan.Ma
+Version:	V: 01.10
+Modify:
+	Checkout from develop.
+	1. 增加支持Hi3518EV200平台设备
+	2. 增加支持G26设备驱动
+	3. G26设备驱动支持模块：
+		LDR、红外灯、IRC、WiFi按键、Visitor按键、状态灯、
+		AudioPlug、PIR、DoorBell、DoorLock、FM1288
+	4. 在LDR.c中添加对白天黑夜光敏切换值的设置函数，在设备的配置文件中
+		针对不同设备对切换值进行单独设置。
+
+Note:
+	新产品驱动开发，增加支持Hi3518EV200平台驱动，增加G26设备支持驱动
+
+******************************************************************
+Date:		2017-01-19
+Project:	Driver
+Platform:	Hi3518EV100
+Author：	Chiyuan.Ma
+Version:	V: 01.08
+Modify:
+	Checkout from feature/develop.
+	1. 修改支持Hi3518E平台的F10、G09设备驱动的StateLight的颜色
+		将以前的：LED0-白色、LED1-蓝色，修改为：LED0-蓝色、LED1-白色
+
+Note:
+	老产品驱动问题修复，需要配合修改了F10状态灯的mainapp程序使用。
+
+******************************************************************
+Date:		2016-12-22
+Project:	Driver
+Platform:	Hi3518EV100
+Author：	Chiyuan.Ma
+Version:	V: 01.06
+Modify:
+	Checkout from develop.
+	1. 增加支持Hi3518E平台G09设备驱动
+	2. 从Hi3518E F10设备移植
+	3. G16设备驱动支持模块：
+		红外灯、IRC、LDR、PIR、WiFi按键、Visitor按键、状态灯、
+		AudioPlug、DoorBell、DoorLock、FM1288
+
+Note:
+	新产品驱动开发，增加支持Hi3518E平台G09设备驱动
+
+******************************************************************
+Date:		2016-12-20
+Project:	Driver
+Platform:	Hi3518EV200
+Author：	Chiyuan.Ma
+Version:	V: 01.06
+Modify:
+	Checkout from develop.
+	1. 增加支持Hi3518EV200平台设备
+	2. 增加支持G16设备驱动
+	3. G16设备驱动支持模块：
+		红外灯、IRC、WiFi按键、Visitor按键、防拆按键、状态灯、
+		AudioPlug、DoorBell、DoorLock、FM1288
+	4. 在IIC模块中添加对SCL电平的检测，防止由于线与造成拉高SCL电平失败
+	5. 将FM1288初始化数据分离出来，在具体的设备配置文件中，按照设备型号
+		进行配置初始化，以解决不同设备对应不同的FM1288初始化参数问题。
+
+Note:
+	新产品驱动开发，增加支持Hi3518EV200平台驱动，增加G16设备支持驱动
+
+******************************************************************

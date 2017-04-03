@@ -1,0 +1,6 @@
+1.CDS_IN Detect:                        gpio0_0
+2.IRCUT_A--ircut_day_reg:               gpio0_1
+3.IRCUT_B--ircut_night_reg:             gpio0_2
+4.Outward Reset interface reset_reg:    gpio0_3
+5.State LED: COLOR - RED:               gpio5_2
+6.State LED: COLOR - BLUE:              gpio5_3

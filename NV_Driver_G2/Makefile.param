@@ -1,0 +1,169 @@
+# Makefile.param 
+# Only global variable should be defined here.
+# All the variables must be used as "export" and "?=".
+# Otherwise, there will be some errors, when Makefile.param is nested.
+
+# Use this file as the following sample
+# ifeq ($(PARAM_FILE), )
+#     PARAM_FILE:=../Makefile.param
+#     include $(PARAM_FILE)
+# endif
+
+# One ARCH may have a variety of CHIPs
+
+#export chip?=3507
+export chip?=3518
+#export HI_CROSS?=uclibc
+
+
+
+# 1. Define the default OS link directory.
+# 2.
+# 3. 
+# 4. 
+
+
+
+
+
+
+
+
+
+ 
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ----> HI3507
+ifeq ($(chip),3507)
+#export PLATFORM=HI3507
+export HIARCH=hi3507
+# 1
+export SDK_PATH=$(shell echo $$NVC_HISDK3507)/Hi3511_VSSDK_V1.1.2.3
+# 2
+export CROSS=arm-hismall-linux-
+export CC=$(CROSS)gcc
+export AR=$(CROSS)ar
+# 3
+PUB_PATH=$(SDK_PATH)/pub
+DRV_PATH=$(SDK_PATH)/source/drv
+MPP_PATH=$(SDK_PATH)/mpp
+LIB_PATH=$(MPP_PATH)/lib.rel
+
+LIBS =  $(LIB_PATH)/libmpi.a \
+	$(LIB_PATH)/lib_VoiceEngine.a \
+ 	$(LIB_PATH)/lib_amr_spc.a \
+	$(LIB_PATH)/lib_amr_fipop.a \
+	$(LIB_PATH)/lib_aec.a \
+	$(LIB_PATH)/lib_aacdec.a \
+	$(LIB_PATH)/lib_aacenc.a \
+	$(LIB_PATH)/libloadbmp.a \
+	$(LIB_PATH)/libtde.a
+INC_PATH=-I$(PUB_PATH)/include \
+	-I$(MPP_PATH)/include \
+	-I$(MPP_PATH)/include/mkp \
+	-I$(MPP_PATH)/sample
+
+export KERNEL_SRC=$(PUB_PATH)/kbuild-FULL_REL
+
+DBG?=N
+ifeq ($(DBG),Y)
+export HI_MAKE_DBG:=HI_DEBUG
+export HI_SUPPORT_GDB:=YES
+else
+export HI_MAKE_DBG:=HI_RELEASE
+
+endif
+endif
+
+
+
+
+
+
+
+
+
+
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ----> HI3518
+ifeq ($(chip),3518)
+#export PLATFORM=HI3518
+export HIARCH=hi3518
+# 1
+export SDK_PATH=$(shell echo $$NVC_HISDK3518)/Hi3518_SDK_V1.0.8.1
+export ARCH=arm
+export HICHIP=0x35180100
+export ARCH_DIR=hi3518
+# 2
+export KERNEL_SRC=$(SDK_PATH)/osdrv/kernel/linux-3.0.y
+export DRV_ROOT=$(SDK_PATH)/drv
+export MPP_PATH=$(SDK_PATH)/mpp
+
+
+# use C01 to indicate uclibc, C02 to  indicate glibc, C00 to indicate FPGA.
+export LIBC?=uclibc
+ifeq ($(LIBC),glibc)
+	export CVER?=.C02
+	export CROSS_COMPILE?= arm-hisiv200-linux-
+	export CROSS?= arm-hisiv200-linux-
+else
+	export CVER?=.C01
+	export CROSS_COMPILE?= arm-hisiv100nptl-linux-
+	export CROSS?= arm-hisiv100nptl-linux-
+endif
+# Define cross compiler
+export CC:=$(CROSS)gcc
+export AR:=$(CROSS)ar
+export MPP_CFLAGS:= -Wall
+
+
+export HIDBG=HI_DEBUG
+# Whether open -g 
+#export HIGDB?=y
+export HIGDB?=n
+ifeq ($(HIGDB), y)
+	MPP_CFLAGS += -g
+else
+	MPP_CFLAGS += -O2
+endif
+
+
+# Define the object output directory
+export HI_FPGA:=HI_XXXX
+export EXTDRV:=extdrv_$(HIARCH)
+
+export REL_INC := $(MPP_PATH)/include
+export REL_LIB := $(MPP_PATH)/lib
+export REL_KO  := $(MPP_PATH)/ko
+
+export JPEGD_PATH?=$(MPP_PATH)/component/jpegd
+export AUDIO_PATH?=$(MPP_PATH)/component/audio/lib/$(CROSS)
+
+# Define the lib of audio codec
+export AUDIO_LIBA := $(REL_LIB)/libVoiceEngine.a \
+		$(REL_LIB)/libaec.a	\
+		$(REL_LIB)/libresampler.a \
+		$(REL_LIB)/libanr.a\
+		$(REL_LIB)/libvqev2.a
+
+# Define the lib of jpeg codec
+export JPEGD_LIBA:=$(REL_LIB)/libjpeg.a
+
+# Define communication protocal use gpioi2c or i2c
+export CONFIG_GPIO_I2C=N
+# include the config file of platform
+export CONFIG_ISP=y
+
+#********************* Macro for version management***************************** 
+VER_X ?= 1
+VER_Y ?= 0
+VER_Z ?= 0
+VER_P ?= 0
+MPP_CFLAGS += -DVER_X=$(VER_X) -DVER_Y=$(VER_Y) -DVER_Z=$(VER_Z) -DVER_P=$(VER_P)
+#******************************************************************************* 
+
+endif
+
+
+
+
+
+
+

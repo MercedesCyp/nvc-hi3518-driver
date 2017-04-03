@@ -1,0 +1,116 @@
+* The first designed: By maj in 2015-7-21
+* The last modified: By maj in 2015-7-21
+* Responsible Person & Contact Information: 
+    Name:   maj 
+    Eamil:  aojie.meng@netviewtech.com
+
+1. At the application start, the test program will test the DRIVER installation
+situation. if the DRIVER didnt install or the target directory didnt have 
+the `NV_Driver.ko` file, that will make test program throw out a warning.
+like next!
+`You didnt load `NV_Driver.ko`, Please use `insmod` load it. REMEMBER this Chip and Pro two variable. `
+`Under the directory of /mnt/mtd/modules/NV_Driver/` haven't `NV_Driver.ko` file.
+
+2. Next steps is open the Driver, in generally, won't appear any mistakes.
+but it if happened, you should connect with us.
+
+3. After this program detecting driver information, that will show you a table 
+in your console, it's included  product's name and what chip used int it,
+driver version and driver build time, and witch event function is supported.
+Table is like that!!
+
+Table:1-1
+--------------------------------------------------------------------------------
+|
+|        * * * * * * * * * * * * * * * * * * * * * 
+|       *                                         *
+|       *           NV_DRIVER TEST                *
+|       *                                         *
+|        * * * * * * * * * * * * * * * * * * * * * 
+|       open `/dev/NV_Driver` Success
+|       --------------- DRIVER INFO ---------------
+|       Driver path: /dev/NV_Driver
+|       Chip: 0x3518e
+|       Pro: 0xf08
+|       Driver Version: V: 01.02
+|       Compiler Date: Jul 21 2015
+|       --------------- DRIVER CAPB ---------------
+|       Support: Button(number:1)
+|       Support: Day&Night-Detect
+|       Support: Infrared-filter
+|       Support: Infrared-Light
+|       Support: State-LED(number:3)
+|       Support: Audio-Plug
+|       
+|       Press `Enter` continue.....
+|
+--------------------------------------------------------------------------------
+
+4. Press `Enter` into next window.
+
+Table:1-2
+--------------------------------------------------------------------------------
+|
+|   	***************************************************
+|   	| NUM | CMD              | NUM | CMD              |
+|   	---------------------------------------------------
+|   	| 1   | BUTTON           | 2   | LDR              |
+|   	| 3   | IRCUT            | 4   | IfrLi            |
+|   	| 5   | StaLi            | 6   | AuPl             |
+|   	---------------------------------------------------
+|   	Please select you want test event!
+|   	tips: Input `help` for more information
+|   	tips: Input `exit` for quit this operation.
+|   
+|
+--------------------------------------------------------------------------------
+
+This table is depended your device, so it could not similar with yours. 
+In this window, you can select any event want to test.
+but you should have notice in some point.
+    
+    a)  If you want quit out, you can type int `exit` end of enter key.
+    
+    b)  If you want get more information, type in `help`,
+        the program will open this document.
+    
+    c)  If you want show all status at one screen, please type in `show`,
+        it will update one times per seconds. Pressing `Enter` exit.
+    
+    d)  Besides! you can select a event typing event number or event name.
+    
+    e)  A most of event have a entry name-d `Auto Detect`,
+        the default update frequent is 1times/s, but also, you cant change it :).
+        if you want exit, then tap `enter` on your key board.
+    
+    f)  If you cant sure whether the hardware or software exist error in LDR,
+        you can enter LDR event, in this event table,
+        it'll show you the value of AD sampling.
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

@@ -1,0 +1,43 @@
+0.	tab缩进 4字节
+	
+1.	函数格式说明
+	gf	模块私有，外部可调用函数
+	sf	模块私有，外部不可调用
+	rbf	模块公开类私有，外部可重写，内部有默认方法( public function )
+	inf	模块公开类私有，外部必须实现（重写），内部无实现，当外部无实现时不执行( function interface )
+	prf	模块公开类私有，外部可调用，不可重写
+	
+2.	变量格式说明
+	p	指针变量前加p，非指针变量不加
+	
+	i	传入参数前加i	这4个相互独立
+	r	返回参数前加r	这4个相互独立
+	t	局部变量加t		这4个相互独立
+	g	全局变量加g		这4个相互独立
+	
+	c	静态变量加c
+	s	文件类的局部变量加s
+	
+	o	结构体变量前加s
+	
+	a	数组前加a
+	
+	格式中对变量size不做说明
+	优先级				从上往下优先级依次降低
+	
+3.	oop中的，type variable = new type(param……)
+	等价于
+	type variable；
+	variable = type_origin_dedfalut;
+	type_origin_dedfalut 也是一个 type 类型的变量
+	type_origin_dedfalut 由程序在最开始编写的时候初始化完成
+	经过上面的赋值，只相当于基层了一个 type_origin_dedfalut 的相关属性
+	variable 的方法还是指向原来的 type_origin_dedfalut 的方法
+	所以 variable 最好重定义一下函数
+	这个操作并不完全等价于 oop 中的
+	type variable = new type(param……)
+
+4	在 /Pro 目录下面的文件主要用来配置各个型号机器的具体参数
+	和自己重写的代码，
+	文件中说要应用的头文件一律定义到各个 Por 配置文件的 .c 文件前
+	
